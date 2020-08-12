@@ -50,6 +50,8 @@ app.post('/url', async (req, res, next) => {
     let { slug, url } = req.body;
     try {
         // Validate input with schema
+
+        //TODO: Fix schema validation. seems to be broken (at least in the front end?)
         await schema.validate({
             slug,
             url
@@ -57,6 +59,7 @@ app.post('/url', async (req, res, next) => {
         // if slug doesn't exist, create one
         if(!slug) {
             slug = nanoid(5);
+            res.json(slug);
         } else {
             const existing = await urls.findOne({ slug });
             if(existing) {
