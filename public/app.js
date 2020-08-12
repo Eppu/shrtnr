@@ -15,7 +15,7 @@ const app = new Vue( {
                 },
                 body: JSON.stringify({
                     url: this.url,
-                    slug: this.slug
+                    slug: this.slug || undefined,
                 })
             });
             this.created = await response.json();

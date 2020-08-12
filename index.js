@@ -41,17 +41,15 @@ app.get('/:id', async (req, res) => {
 });
 
 const schema = yup.object().shape({
-    slug: yup.string().trim().matches(/[\w\-]/i),
+    slug: yup.string().trim().matches(/^$|[\w\-]/i),
     url: yup.string().trim().url().required(),
-});
+  });
 
 app.post('/url', async (req, res, next) => {
     // create a short url
     let { slug, url } = req.body;
     try {
         // Validate input with schema
-
-        //TODO: Fix schema validation. seems to be broken (at least in the front end?)
         await schema.validate({
             slug,
             url
@@ -59,7 +57,7 @@ app.post('/url', async (req, res, next) => {
         // if slug doesn't exist, create one
         if(!slug) {
             slug = nanoid(5);
-            res.json(slug);
+            console.log(slug);
         } else {
             const existing = await urls.findOne({ slug });
             if(existing) {
@@ -67,6 +65,7 @@ app.post('/url', async (req, res, next) => {
             }
         }
         slug = slug.toLowerCase();
+        console.log("slug in lower case: " + slug);
         const newUrl = {
             url,
             slug,
