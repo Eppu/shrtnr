@@ -71,6 +71,8 @@ app.post('/url', async (req, res, next) => {
             slug,
         };
         const created = await urls.insert(newUrl);
+        // Remove urls after 24h
+        setTimeout(removeURL, 86400000, slug);
         res.json(created);
     } catch (error) {
         next(error);
@@ -88,6 +90,11 @@ app.use((error, req, res, next) => {
         stack: process.env.NODE_ENV === 'production' ? '🥞' : error.stack
     })
 })
+
+function removeURL(staleSlug) {
+    urls.remove({"slug": staleSlug });
+    console.log("Removed " + staleSlug);
+}
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
