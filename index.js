@@ -11,6 +11,8 @@ require('dotenv').config();
 const db = monk(process.env.MONGODB_URI);
 const urls = db.get('urls');
 urls.createIndex({ slug: 1 }, { unique: true });
+// Delete entries after 24h
+urls.createIndex({"createdAt": 1 }, { expireAfterSeconds: 86400 });
 
 
 const app = express();
@@ -67,6 +69,7 @@ app.post('/url', async (req, res, next) => {
         slug = slug.toLowerCase();
         console.log("slug in lower case: " + slug);
         const newUrl = {
+            createdAt: new Date(),
             url,
             slug,
         };
