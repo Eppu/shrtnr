@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eetu.me - Super Simple URL Shortening</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+
+        .font-family-karla {
+            font-family: karla, sans-serif;
+        }
+    </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98676156-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-98676156-2');
+    </script>
+
+</head>
+
+<body>
+    <div class="flex h-screen flex flex-col">
+        <main class="flex items-center justify-center font-family-karla flex-grow" id="app">
+            <div class="container mx-auto px-4">
+                <div class="items-center flex flex-wrap">
+                    <div class="w-full md:w-4/12 ml-auto mr-auto px-4">
+                        <div id="lottie"></div>
+
+                    </div>
+                    <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
+                        <div class="md:pr-12">
+                        </div>
+                        <h3 class="text-3xl font-semibold">404 - Oops!</h3>
+                        <p class="mt-4 text-lg leading-relaxed text-gray-600 mb-5">
+                            Looks like the page you were trying to access couldn't be found.
+                        </p>
+                        <form action="http://eetu.me/">
+
+                            <div class="md:flex md:items-center">
+                                <div class="md:w-3/6">
+                                    <button
+                                        class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                        type="submit">
+                                        < Back to home 
+                                    </button> 
+                                </div> 
+                            </div> 
+                        </form> 
+                    </div> 
+                </div> 
+            </div> 
+        </main>                                       
+    <footer     
+        class="container mx-auto px-4 w-full pt-16 pb-6 text-sm text-center md:text-left fade-in">      
+        <p class="text-gray-500">Made with love by <a class="hover:text-purple-400"    
+            id="eetu" href="https://eetueskelinen.com" target="_blank">Eetu</a>     
+        </p>     
+    </footer>  
+</div>
+        
+<script src="./lottie.min.js"></script>
+<script>
+let anim = lottie.loadAnimation({
+    container: document.getElementById(        
+    'lottie'), // the dom element that will contain the animation  
+    renderer: 'svg',  
+    loop: true,   
+    autoplay: true,  
+    path: './astronaout.json' // the path to the animation json   
+});
+anim.play();
+</script>
+</body>
+
+</html>

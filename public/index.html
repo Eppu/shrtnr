@@ -26,7 +26,6 @@
     gtag('config', 'UA-98676156-2');
     </script>
 
-    <script data-ad-client="ca-pub-2328458550016565" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 </head>
 
 <body>
@@ -84,9 +83,16 @@
                         </div>
                     </div>
                 </form>
-                <pre v-if="created">
-                {{JSON.stringify(created, null, 2)}}
-            </pre>
+                <div v-if="error" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-4" role="alert">
+                    <strong class="font-bold">Holy smokes!</strong>
+                    <span class="block sm:inline">{{error}}</span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                    </span>
+                  </div>
+                    <div v-if="created">
+                        <p class="created">Your custom URL is: <a :href="created" class="hover:text-purple-400">{{created}}</a></p>
+                        <p>It will be available for the next 24 hours.</p>
+                    </div>
                 </div>
               </div>
             </div>
@@ -96,12 +102,8 @@
     </footer>
 </div>
  
-
-
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
     <script src="./app.js"></script>
-    <script data-ad-client="ca-pub-2328458550016565" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-
 </body>
 
 </html>

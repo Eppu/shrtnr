@@ -3,10 +3,13 @@ const app = new Vue( {
     data: {
         url: '',
         slug: '',
+        error: '',
+        formVisible: true,
         created: null,
     },
     methods: {
         async createUrl() {
+            this.error = '';
             console.log(this.url, this.slug);
             const response = await fetch('/url', {
                 method: 'POST',
@@ -18,6 +21,16 @@ const app = new Vue( {
                     slug: this.slug || undefined,
                 })
             });
+            if (response.ok) {
+                const result = await response.json();
+                this.formVisible = false;
+                this.created = `http://eetu.me/${result.slug}`;
+            } else if (response.status === 429) {
+                this.error = "You're sending too many requests. Try again in 30 seconds. ✌️";
+            } else {
+                const result = await response.json();
+                this.error = result.message;
+            }
             this.created = await response.json();
         }
     }

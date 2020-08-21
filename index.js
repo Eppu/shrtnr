@@ -3,6 +3,8 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const yup = require('yup');
 const monk = require('monk');
+const rateLimit = require('express-rate-limit');
+const slowDown = require('express-slow-down');
 const { nanoid } = require('nanoid');
 
 require('dotenv').config();
@@ -17,7 +19,7 @@ urls.createIndex({"createdAt": 1 }, { expireAfterSeconds: 86400 });
 
 const app = express();
 app.enable('trust proxy');
-app.use(morgan('tiny'));
+app.use(morgan('common'));
 app.use(express.json());
 app.use(express.static('./public'));
 app.use(helmet());
@@ -36,9 +38,9 @@ app.get('/:id', async (req, res) => {
         if (url) {
             res.redirect(url.url);
         }
-        res.redirect(`/?error=${slug} not found`);
+        res.redirect(`/404.html`);
     } catch (error) {      
-        res.redirect(`/?error=Link not found`);
+        res.redirect(`/404.html`);
     }
 });
 
@@ -47,7 +49,15 @@ const schema = yup.object().shape({
     url: yup.string().trim().url().required(),
   });
 
-app.post('/url', async (req, res, next) => {
+app.post('/url', slowDown({
+    // Limit rate
+    windowMs: 30 * 1000,
+    delayAfter: 1,
+    delayMs: 500,
+}), rateLimit({
+    windowMs: 30 * 1000,
+    max: 1,
+}), async (req, res, next) => {
     // create a short url
     let { slug, url } = req.body;
     try {
@@ -56,6 +66,9 @@ app.post('/url', async (req, res, next) => {
             slug,
             url
         });
+        if (url.includes('eetu.me')) {
+            throw new Error ('Nice try. 🛑');
+        }
         // if slug doesn't exist, create one
         if(!slug) {
             slug = nanoid(5);
@@ -81,6 +94,10 @@ app.post('/url', async (req, res, next) => {
         next(error);
     }  
 });
+
+app.use((req, res, next) => {
+    res.status(404).sendFile('/404.html');
+})
 
 app.use((error, req, res, next) => {
     if (error.status) {
