@@ -24,12 +24,6 @@ app.use(express.json());
 app.use(express.static('./public'));
 app.use(helmet());
 
-
-app.get('/url/:id', (req, res) => {
-    // get short url by id 
-    
-});
-
 app.get('/:id', async (req, res) => {
     // Redirect to url
     const { id: slug } = req.params;
