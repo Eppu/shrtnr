@@ -13,6 +13,10 @@ rgb(120,83,25),9px 9px 0 rgb(108,73,20),10px 10px 0 rgb(93,63,13),11px 11px 0 rg
 rgb(63,41,8),13px 13px 0
 }
 
+#main-image {
+  margin: 10px 0px;
+}
+
 .created {
   margin-top: 10px;
 }
