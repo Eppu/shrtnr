@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+
+.font-family-karla {
+    font-family: karla, sans-serif;
+}
+
 #eetu {
     background-position: 0 100%;
     background-repeat: repeat-x;
