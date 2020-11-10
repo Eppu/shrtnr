@@ -23,6 +23,9 @@ const app = new Vue( {
             });
             if (response.ok) {
                 const result = await response.json();
+                console.log("response was ok");
+                console.log(result);
+                console.log(result.slug);
                 this.formVisible = false;
                 this.created = `http://eetu.me/${result.slug}`;
             } else if (response.status === 429) {
