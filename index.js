@@ -45,7 +45,8 @@ const schema = yup.object().shape({
 
 app.post('/url', slowDown({
     // Limit rate
-    windowMs: 30 * 1000,
+    // windowMs: 30 * 1000,
+    windowMs: 10,
     delayAfter: 1,
     delayMs: 500,
 }), rateLimit({

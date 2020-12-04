@@ -1,4 +1,4 @@
-const app = new Vue( {
+const app = new Vue({
     el: '#app',
     data: {
         url: '',
@@ -6,6 +6,7 @@ const app = new Vue( {
         error: '',
         formVisible: true,
         created: null,
+        copied: false,
     },
     methods: {
         async createUrl() {
@@ -24,7 +25,7 @@ const app = new Vue( {
             if (response.ok) {
                 const result = await response.json();
                 this.formVisible = false;
-                this.created = `http://eetu.me/${result.slug}`;
+                this.created = `${new URL(location.href)}${result.slug}`;
             } else if (response.status === 429) {
                 this.error = "You're sending too many requests. Try again in 30 seconds. ✌️";
             } else {
@@ -32,6 +33,16 @@ const app = new Vue( {
                 this.error = result.message;
             }
             this.created = await response.json();
-        }
+        },
+        async copyUrl(url) {
+            console.log(url);
+            try {
+                await navigator.clipboard.writeText(url)
+                this.copied = true;
+              } catch (err) {
+                console.error('Failed to copy!', err)
+              }
+          }
+      
     }
 })

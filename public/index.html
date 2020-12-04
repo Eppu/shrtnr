@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>eetu.me - Super Simple URL Shortening</title>
+    <title>SHRTN - A Super Simple URL Shortener</title>
     <link href="dist/styles.css" rel="stylesheet">
     
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -35,7 +35,7 @@
               <div class="w-full md:w-5/12 ml-auto mr-auto px-4">
                 <div class="md:pr-12">
                   </div>
-                  <h3 class="text-3xl font-semibold">eetu.me</h3>
+                  <h3 class="text-3xl font-semibold">SHRTN</h3>
                   <p class="mt-4 text-lg leading-relaxed text-gray-600 mb-5">
                       A super simple URL shortener.
                   </p>
@@ -82,8 +82,8 @@
                     </span>
                   </div>
                     <div v-if="created">
-                        <p class="created">Your custom URL is: <a :href="created" class="hover:text-purple-400">{{created}}</a></p>
-                        <p>It will be available for the next 24 hours.</p>
+                        <p class="created">Your custom URL is: <b class="hover:text-purple-400" id="shortenedUrl" @click="copyUrl(created)" ref="createdUrl">{{created}}</b></p>
+                        <p v-if="copied">Copied to clipboard!</p>
                     </div>
                 </div>
               </div>
