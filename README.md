@@ -6,9 +6,7 @@ A tiny URL shortener.
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/github_username/repo">
     <img src="https://i.imgur.com/TyXlAax.png" alt="Logo">
-  </a>
   <p align="center">
     A tiny URL shortener
     <br />
@@ -25,7 +23,7 @@ A tiny URL shortener.
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](http://eetu.me)
+[![A screenshot of a URL shortener][product-screenshot]](http://eetu.me)
 
 
 ### Built With
