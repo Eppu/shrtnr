@@ -34,7 +34,6 @@ const app = new Vue( {
                 const result = await response.json();
                 this.error = result.message;
             }
-            this.created = await response.json();
         }
     }
 })
