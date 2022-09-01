@@ -1,29 +1,16 @@
-[![LinkedIn][linkedin-shield]][linkedin-url]
-# eetu.me
+# shrtnr
 A tiny URL shortener.
+<!-- <img src="https://i.imgur.com/TyXlAax.png" alt="Logo"> -->
+<a href="https://github.com/Eppu/shrtnr/issues">Report Bug</a>
+·
+<a href="https://github.com/Eppu/shrtnr/issues">Request Feature</a>
 
-
-<!-- PROJECT LOGO -->
-<br />
-<p align="center">
-    <img src="https://i.imgur.com/TyXlAax.png" alt="Logo">
-  <p align="center">
-    A tiny URL shortener
-    <br />
-    <a href="http://eetu.me"><strong>eetu.me</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/Eppu/shrtnr/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/Eppu/shrtnr/issues">Request Feature</a>
-  </p>
-</p>
 
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![A screenshot of a URL shortener][product-screenshot]](http://eetu.me)
+[![A screenshot of a URL shortener][product-screenshot]]()
 
 
 ### Built With
